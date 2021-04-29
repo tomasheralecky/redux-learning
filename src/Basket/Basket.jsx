@@ -4,7 +4,6 @@ import BasketProduct from '../BasketProduct/BasketProduct';
 
 const Basket = () => {
     const data = useSelector(state => state.basketItems);
-    console.log(data);
     const totalPrice = useSelector(state => state.basketTotalPrice);
 
     return (
