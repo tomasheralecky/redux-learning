@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../Store/actions';
 
@@ -7,7 +7,10 @@ const Product = (item) => {
     const [amount, setAmount] = useState(1);
 
     const handleAddToCart = item => {
-        dispatch(addToCart(item));
+        dispatch(addToCart({
+            ...item,
+            count: amount
+        }));
     }
 
     const handleWrittenAmount = (e) => {
@@ -21,10 +24,6 @@ const Product = (item) => {
         const formattedValue = value <= 0 ? 1 : value;
         setAmount(formattedValue);
     }
-
-    useEffect(() => {
-        item.item.count = amount;
-    }, [amount, item.item]);
 
     return (
         <div className="product" key={item.item.id}>
