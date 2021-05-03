@@ -14,16 +14,23 @@ const BasketProduct = (item: ProductProps) => {
     const handleWrittenAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = parseInt(e.target.value);
         const formattedValue = isNaN(value) || value <= 0 ? 1 : value;
-        item.count = formattedValue;
-        dispatch(updateBasketItemCount(item));
-        setAmount(formattedValue);
+        dispatch(
+            updateBasketItemCount({
+                ...item,
+                count: formattedValue,
+            }),
+        );
     };
 
     const handleAmount = (sign: string) => {
         const value = sign === '+' ? amount + 1 : amount - 1;
         const formattedValue = value <= 0 ? 1 : value;
-        item.count = formattedValue;
-        dispatch(updateBasketItemCount(item));
+        dispatch(
+            updateBasketItemCount({
+                ...item,
+                count: formattedValue,
+            }),
+        );
     };
 
     useEffect(() => {

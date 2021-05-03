@@ -56,9 +56,15 @@ const handleRemoveFromCart = (state: InitStateProps, payload: ProductProps) => {
 };
 
 const handleUpdateBasketItemCount = (state: InitStateProps, payload: ProductProps) => {
-    const filtered = state.basketItems.filter((basketItem) =>
-        basketItem.id === payload.id ? payload : basketItem,
-    );
+    const filtered = state.basketItems.map((item) => {
+        if (item.id === payload.id) {
+            return {
+                ...item,
+                count: payload.count,
+            };
+        }
+        return item;
+    });
 
     return {
         ...state,
