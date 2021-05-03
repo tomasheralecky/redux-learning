@@ -2,12 +2,12 @@ import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_BASKET_ITEM_COUNT } from './actio
 import { PayloadAction } from '@reduxjs/toolkit';
 import { ProductProps } from '../components/Product/Product';
 
-export interface InitStateProps {
+export interface StateProps {
     basketItems: ProductProps[];
     basketTotalPrice: number;
 }
 
-const InitState: InitStateProps = {
+const InitState: StateProps = {
     basketItems: [],
     basketTotalPrice: 0,
 };
@@ -21,7 +21,7 @@ const handleBasketTotalPrice = (items: ProductProps[]) => {
     return totalPrice;
 };
 
-const handleAddToCart = (state: InitStateProps, payload: ProductProps) => {
+const handleAddToCart = (state: StateProps, payload: ProductProps) => {
     const sameItem = state.basketItems.some((item) => item.id === payload.id);
     if (sameItem) {
         const filtered = state.basketItems.map((item) => {
@@ -46,7 +46,7 @@ const handleAddToCart = (state: InitStateProps, payload: ProductProps) => {
     };
 };
 
-const handleRemoveFromCart = (state: InitStateProps, payload: ProductProps) => {
+const handleRemoveFromCart = (state: StateProps, payload: ProductProps) => {
     const filtered = state.basketItems.filter((basketItem) => basketItem.id !== payload.id);
     return {
         ...state,
@@ -55,7 +55,7 @@ const handleRemoveFromCart = (state: InitStateProps, payload: ProductProps) => {
     };
 };
 
-const handleUpdateBasketItemCount = (state: InitStateProps, payload: ProductProps) => {
+const handleUpdateBasketItemCount = (state: StateProps, payload: ProductProps) => {
     const filtered = state.basketItems.map((item) => {
         if (item.id === payload.id) {
             return {

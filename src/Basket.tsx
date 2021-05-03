@@ -1,11 +1,11 @@
-import { InitStateProps } from './modules/store/reducer';
+import { StateProps } from './modules/store/reducer';
 import { useSelector } from 'react-redux';
 import BasketProduct from './modules/components/BasketProduct/BasketProduct';
 import React from 'react';
 
 const Basket = () => {
-    const data = useSelector((state: InitStateProps) => state.basketItems);
-    const totalPrice = useSelector((state: InitStateProps) => state.basketTotalPrice);
+    const data = useSelector((state: StateProps) => state.basketItems);
+    const totalPrice = useSelector((state: StateProps) => state.basketTotalPrice);
 
     return (
         <div className="basket">
