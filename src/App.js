@@ -3,24 +3,25 @@ import { Provider } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import { store, persistor } from './modules/store/store';
 import Basket from './Basket';
+import Confirmation from './Confirmation';
+import DeliveryPayment from './DeliveryPayment';
+import Header from './modules/components/Header/Header';
 import Home from './Home';
-import Products from './Products';
+import Invoicing from './Invoicing';
+import Summary from './Summary';
 
 function App() {
     return (
         <Provider store={store}>
             <PersistGate persistor={persistor}>
-                <div>
-                    <a href="/">Home</a>
-                    <br />
-                    <a href="/products">Products</a>
-                    <br />
-                    <a href="/basket">Basket</a>
-                </div>
+                <Header />
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/products" component={Products} />
                     <Route path="/basket" component={Basket} />
+                    <Route path="/delivery-payment" component={DeliveryPayment} />
+                    <Route path="/invoicing" component={Invoicing} />
+                    <Route path="/summary" component={Summary} />
+                    <Route path="/confirmation" component={Confirmation} />
                 </Switch>
             </PersistGate>
         </Provider>

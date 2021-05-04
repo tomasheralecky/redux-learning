@@ -38,7 +38,7 @@ const BasketProduct = (item: ProductProps) => {
     }, [item.count]);
 
     return (
-        <li key={item.id}>
+        <li className="basket__product" key={item.id}>
             <h3>{item.title}</h3>
             <p>{item.description}</p>
             <p>{item.price} Kč</p>

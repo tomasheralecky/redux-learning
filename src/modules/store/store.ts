@@ -1,16 +1,29 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { createStore } from 'redux';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import reducer from './reducer';
+import basketReducer, { BasketStateProps } from './basketReducer';
+import deliveryPaymentReducer, { DeliveryPaymentStateProps } from './deliveryPaymentReducer';
+import invoicingReducer, { InvoicingStateProps } from './invoicingReducer';
 
 import storage from 'redux-persist/lib/storage';
+
+export interface StoreProps {
+    basketState: BasketStateProps;
+    deliveryPaymentState: DeliveryPaymentStateProps;
+    invoicingState: InvoicingStateProps;
+}
+
+const rootReducer = combineReducers({
+    basketState: basketReducer,
+    deliveryPaymentState: deliveryPaymentReducer,
+    invoicingState: invoicingReducer,
+});
 
 const persistConfig = {
     key: 'root',
     storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, reducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 let devTools = false;
 try {

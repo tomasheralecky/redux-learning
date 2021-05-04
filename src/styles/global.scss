@@ -2,6 +2,30 @@ button {
     cursor: pointer;
 }
 
+p {
+    margin: 0;
+}
+
+.header {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.header__item {
+    & + & {
+        margin-left: 24px;
+    }
+}
+
+.header__items-count {
+    margin-left: 4px;
+    padding: 4px 8px;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+}
+
 .products {
     display: flex;
     flex-flow: row wrap;
@@ -14,6 +38,22 @@ button {
     width: 35%;
     padding-left: 40px;
     float: right;
+}
+
+.basket--inline {
+    width: 100%;
+    padding: 0;
+    float: none;
+    display: flex;
+    flex-flow: row wrap;
+
+    .basket__product {
+        margin-left: 80px;
+    }
+}
+
+.basket__total-price {
+    flex: 0 0 100%;
 }
 
 .spinner-overlay {
@@ -35,6 +75,17 @@ button {
     border-right: none;
     border-radius: 50%;
     animation: rotation 0.5s infinite linear;
+}
+
+.order-footer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    margin-top: 100px;
+
+    .basket--inline & {
+        flex: 0 0 100%;
+    }
 }
 
 @keyframes rotation {
