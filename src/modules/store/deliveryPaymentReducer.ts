@@ -9,8 +9,8 @@ export interface DeliveryPaymentStateProps {
 }
 
 export const InitState: DeliveryPaymentStateProps = {
-    delivery: { id: '', label: '' },
-    payment: { id: '', label: '' },
+    delivery: { id: '', label: '', price: 0 },
+    payment: { id: '', label: '', price: 0 },
 };
 
 const handleUpdateDeliveryMethod = (
@@ -35,7 +35,7 @@ const handleUpdatePaymentMethod = (
 
 export default function deliveryPaymentReducer(
     state = InitState,
-    action: PayloadAction<DeliveryMethodProps | PaymentMethodProps>,
+    action: PayloadAction<DeliveryMethodProps & PaymentMethodProps>,
 ) {
     switch (action.type) {
         case UPDATE_DELIVERY_METHOD:

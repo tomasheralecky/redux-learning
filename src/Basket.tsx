@@ -9,6 +9,11 @@ const Basket = () => {
 
     const inline = window.location.pathname === '/basket' ? ' basket--inline' : '';
 
+    const freeShipping =
+        totalPrice >= 1500
+            ? 'Dopravu máte zdarma'
+            : `Do dopravy zdarma zbývá ${1500 - totalPrice} Kč`;
+
     const handleSubmit = () => {
         window.location.replace('/delivery-payment');
     };
@@ -19,6 +24,7 @@ const Basket = () => {
             {data.length > 0 ? (
                 <>
                     <h3 className="basket__total-price">Cena celkem: {totalPrice} Kč</h3>
+                    <h4 className="basket__free-shipping">{freeShipping}</h4>
                     {data.map((item, index) => (
                         <BasketProduct {...item} key={index} />
                     ))}

@@ -32,13 +32,27 @@ const Summary = () => {
                     ))}
                 </ul>
                 <h3>
-                    Celková cena: <u>{store.basketState.basketTotalPrice} Kč</u>
+                    Celková cena za zboží: <u>{store.basketState.basketTotalPrice} Kč</u>
                 </h3>
             </div>
             <div>
                 <h2>Doprava a platba</h2>
-                <p>Doprava: {store.deliveryPaymentState.delivery.label}</p>
-                <p>Platba: {store.deliveryPaymentState.payment.label}</p>
+                <p>
+                    Doprava: {store.deliveryPaymentState.delivery.label} -{' '}
+                    <u>
+                        {store.deliveryPaymentState.delivery.price === 0
+                            ? 'ZDARMA'
+                            : `${store.deliveryPaymentState.delivery.price} Kč`}
+                    </u>
+                </p>
+                <p>
+                    Platba: {store.deliveryPaymentState.payment.label} -{' '}
+                    <u>
+                        {store.deliveryPaymentState.payment.price === 0
+                            ? 'ZDARMA'
+                            : `${store.deliveryPaymentState.payment.price} Kč`}
+                    </u>
+                </p>
             </div>
             <div>
                 <h2>Doručovací údaje</h2>
@@ -49,8 +63,19 @@ const Summary = () => {
                 <p>{store.invoicingState.invoicing.city}</p>
                 <p>{store.invoicingState.invoicing.zip}</p>
             </div>
+            <div>
+                <h2>
+                    Cena celkem:{' '}
+                    <u>
+                        {store.basketState.basketTotalPrice +
+                            store.deliveryPaymentState.delivery.price +
+                            store.deliveryPaymentState.payment.price}{' '}
+                        Kč
+                    </u>
+                </h2>
+            </div>
             <div className="order-footer">
-                <a href="/delivery-payment" className="order-footer__link">
+                <a href="/invoicing" className="order-footer__link">
                     Zpět
                 </a>
                 <button onClick={handleSubmit} className="order-footer__link">
